@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
-URL_REPOSITORIO = "github.com/Murilo-Uchoa/ucmf-triagem-cardiopatia"
+URL_REPOSITORIO = "github.com/Murilo-Uchoa/mineracao-triagem-cardiopatia"
 PAGINAS_MAX = 5
 PALAVRAS_RESUMO = (100, 150)
 
