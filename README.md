@@ -1,8 +1,8 @@
 # Triagem de cardiopatia pediátrica sem vazamento de dados — estudo de caso UCMF
 
 Trabalho da disciplina **Mineração de Dados / KDD** (Instituto de Informática, UFG,
-Prof. Rogerio Salvini, 2026), avaliação A2. Integrantes: Murilo Uchôa, Felipe Orlow
-e João Henrique Simielli.
+Prof. Rogerio Salvini, 2026), avaliação A2. Integrantes: Murilo Uchôa, João Henrique
+Simielli e Felipe Orlow.
 
 **Pergunta:** é possível estimar o risco de cardiopatia em crianças *antes* da
 ausculta do cardiologista, usando só dados do encaminhamento, antropometria, sinais
