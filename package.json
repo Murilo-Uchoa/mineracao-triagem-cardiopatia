@@ -1,0 +1,8 @@
+{
+  "name": "a2-ucmf",
+  "private": true,
+  "description": "Gerador dos slides da A2 (estudo de caso UCMF)",
+  "dependencies": {
+    "pptxgenjs": "^4.0.1"
+  }
+}

@@ -1,0 +1,175 @@
+\documentclass[conference,a4paper]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{cite}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{../figuras/}}
+\renewcommand\IEEEkeywordsname{Palavras-chave}
+\hypersetup{pdftitle={Triagem de cardiopatia pediátrica sem vazamento de dados},
+  pdfauthor={Murilo Uchôa, Felipe Orlow e João Henrique Simielli}}
+
+\input{numeros}
+
+\begin{document}
+
+\title{Triagem de cardiopatia pediátrica sem vazamento de dados: comparação de classificadores no estudo de caso UCMF%
+\thanks{Código, resultados e instruções de reprodução: \url{https://github.com/Murilo-Uchoa/ucmf-triagem-cardiopatia} (\texttt{random\_state}~=~42 em todas as etapas). Trabalho da disciplina Mineração de Dados/KDD, Prof.\ Rogerio Salvini, 2026.}}
+
+\author{\IEEEauthorblockN{Murilo Uchôa, Felipe Orlow e João Henrique Simielli}
+\IEEEauthorblockA{Instituto de Informática, Universidade Federal de Goiás (UFG) -- Goiânia, Brasil}}
+
+\maketitle
+
+\begin{abstract}
+Este trabalho investiga se é possível estimar o risco de cardiopatia em crianças antes da ausculta cardiológica, usando apenas dados do encaminhamento, antropometria, sinais vitais e sintomas. O conjunto UCMF reúne \dado{n} atendimentos de cardiologia pediátrica do Real Hospital Português, com \dado{pct-anormal} de diagnósticos anormais. A análise exploratória evidenciou o vazamento de dados: sozinho, o sopro acerta \dado{onersopro-acuracia} dos diagnósticos; por isso SOPRO e B2, achados da própria ausculta, foram excluídos. Comparamos regressão logística (\textit{baseline}), \textit{random forest} e \textit{gradient boosting} em validação cruzada aninhada, estratificada e agrupada por paciente, com teste 5$\times$2cv. O \textit{gradient boosting} obteve AUC-ROC de \dado{gradientboosting-aucroc}, superior à da logística (\dado{logistica-aucroc}; $p$ ajustado de \dado{logistica-gradientboosting-aucroc-pholm}) e sem diferença significativa em relação à do \textit{random forest}. No limiar de triagem, o modelo identifica \dado{tri-sens-pct} das cardiopatias com especificidade de \dado{trigradientboosting-especificidade}: serve para priorizar a fila, não para dispensar a ausculta.
+\end{abstract}
+
+\begin{IEEEkeywords}
+mineração de dados, classificação, cardiologia pediátrica, vazamento de dados, validação cruzada aninhada.
+\end{IEEEkeywords}
+
+\section{Introdução}
+
+As cardiopatias congênitas estão entre as malformações mais frequentes, com prevalência estimada em 9,1 por mil nascidos vivos~\cite{vanderlinde2011}. Na prática, a porta de entrada é o encaminhamento ao cardiologista pediátrico, que decide, a partir da ausculta e do exame físico, se há patologia. Boa parte dessas crianças é normal --- no conjunto estudado, \dado{n-normal} de \dado{n} atendimentos --- e a fila do especialista é ocupada também por crianças sem patologia.
+
+O objetivo deste trabalho é uma tarefa de \textbf{classificação binária supervisionada}: prever se um atendimento terminará em diagnóstico \emph{Normal} ou \emph{Anormal} usando apenas o que se sabe \emph{antes} da ausculta do cardiologista --- motivo do encaminhamento, antropometria, sinais vitais, pulsos e sintomas relatados. Um modelo assim pode ordenar a fila por risco, mas só é útil se for avaliado com honestidade: a principal armadilha deste conjunto é o vazamento de dados, porque algumas variáveis registram o próprio exame que produz o diagnóstico.
+
+O artigo dá continuidade à etapa de pré-processamento (A1) e contribui em três frentes: (i) identifica e elimina o vazamento em três formas --- de atributo, de instância e de pré-processamento; (ii) compara um \textit{baseline} linear com dois métodos de \textit{ensemble} em validação cruzada aninhada agrupada por paciente, com teste estatístico apropriado a um único conjunto de dados; e (iii) interpreta os erros e o limiar de decisão no contexto clínico.
+
+\section{Dados e análise exploratória}
+
+\subsection{Origem e caracterização}
+
+O conjunto UCMF foi coletado no Real Hospital Português (Recife), anonimizado e liberado para estudos acadêmicos com aprovação de comitês de ética~\cite{dicionario_ucmf}. Dos atendimentos datados, \dado{periodo-pct} ocorreram entre \dado{ano-ini} e \dado{ano-fim} (\dado{sem-data} não têm data). O dado bruto tem \dado{n-bruto} registros e \dado{atributos-brutos} variáveis; após a limpeza da A1 restam \dado{n} atendimentos. A variável-alvo, \texttt{NORMAL X ANORMAL}, indica ausência ou presença de patologia cardíaca: \dado{n-normal} normais e \dado{n-anormal} anormais (\dado{pct-anormal}). O desbalanceamento é moderado: um classificador que sempre diga ``Normal'' acerta \dado{pct-normal}, e a AUC-PR de um modelo sem informação é \dado{dummy-aucpr}.
+
+O modelo usa \dado{atributos-modelo} atributos: cinco numéricos (Peso, Altura, IMC, IDADE e frequência cardíaca, FC), o indicador PA\_medida, seis categóricos (PPA, PULSOS, HDA~1, SEXO, MOTIVO1 e MOTIVO2) e o convênio. A ausência é relevante em IMC (\dado{ausencia-imc}), Altura (\dado{ausencia-altura}), Convênio (\dado{ausencia-convenio}), HDA~1 (\dado{ausencia-hda1}) e MOTIVO2 (\dado{ausencia-motivo2}).
+
+\subsection{Vazamento de dados}
+
+\textbf{De atributo.} A Fig.~\ref{fig:eda}(a) mostra a descoberta central da A1: a prevalência de cardiopatia é de \dado{prevsopro-ausente} entre crianças sem sopro e de \dado{prevsopro-sistolico} entre as com sopro sistólico. A regra única ``sopro presente $\Rightarrow$ anormal'' acerta \dado{onersopro-acuracia} (sensibilidade de \dado{onersopro-sensibilidade}, especificidade de \dado{onersopro-especificidade}), e, fora da amostra, o SOPRO isolado tem AUC de \dado{aucuni-sopro}, contra \dado{aucuni-motivo2} do melhor atributo mantido (Fig.~\ref{fig:eda}(b)). Na prática, o sopro é o veredito da própria ausculta que gera o rótulo, e não um preditor disponível antes dela. Pelo mesmo mecanismo saiu o B2 (segunda bulha), também achado da ausculta; quando hiperfonética, \dado{prevb2-hiperfonetica} dos casos são anormais. Auditamos os demais atributos com dois critérios --- não ser produzido pela ausculta, o exame que define o diagnóstico, e não determinar o alvo isoladamente --- e nenhum outro foi excluído. PULSOS vem da palpação no exame físico, não da ausculta; seu sinal é raro (pulsos femorais diminuídos em \dado{npulsos-femoraisdiminuidos} crianças, \dado{prevpulsos-femoraisdiminuidos} anormais) e sua importância no modelo é desprezível (\dado{imp-gradientboosting-pulsos}). MOTIVO1 e MOTIVO2 descrevem o encaminhamento: a categoria ``Sopro'' de MOTIVO2 é a suspeita do médico que encaminhou, não a ausculta do especialista; das \dado{m2sopro-n} crianças com esse motivo, \dado{m2sopro-semconf} não tiveram o sopro confirmado e \dado{m2sopro-semconf-normal} delas eram normais.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig1_eda.pdf}
+\caption{(a) Prevalência de cardiopatia por categoria de SOPRO (categorias com $n\geq30$). (b) AUC-ROC de cada atributo isolado: nas categóricas, a taxa de anormais por categoria é aprendida no treino e aplicada ao teste das mesmas partições do experimento; nas numéricas, usa-se o próprio valor, nas linhas observadas. Em vermelho, os atributos excluídos por vazamento.}
+\label{fig:eda}
+\end{figure}
+
+\textbf{De instância.} O dicionário chama o ID de ``identificador do paciente'', mas ele identifica o atendimento: \dado{retornos-pares} pares de IDs consecutivos têm a mesma data de nascimento e o mesmo sexo, contra \dado{retornos-acaso} esperados ao acaso. São retornos da mesma criança, e dividi-los entre treino e teste vazaria informação. Adotamos a chave de paciente DN\,+\,sexo, que forma \dado{grupos} grupos; há ainda \dado{mesmo-dia} grupos com mais de um registro no mesmo dia, \dado{mesmo-dia-divergente} deles com diagnósticos divergentes. A ordem dos IDs, por outro lado, não carrega o alvo (concordância entre vizinhos de \dado{ordem-id-concord}, contra \dado{ordem-id-acaso} ao acaso).
+
+\textbf{De pré-processamento.} O arquivo limpo da A1 trazia valores imputados com medianas da base inteira. Esse arquivo foi abandonado: a imputação foi refeita dentro de cada partição de treino (Seção~\ref{sec:metodologia}).
+
+Por fim, a prevalência de anormais cai de \dado{prev-ano-ini} em \dado{ano-ini} para \dado{prev-ano-fim} em \dado{ano-fim}. As datas ficaram fora do modelo, para que ele não aprenda a época em vez do paciente, mas essa deriva limita a generalização para períodos futuros.
+
+\section{Metodologia}\label{sec:metodologia}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig2_metodologia.pdf}
+\caption{Pipeline e protocolo de validação. A limpeza usa apenas regras fixas e roda antes da partição; toda transformação com parâmetro é ajustada no treino de cada partição e só aplicada ao teste. Os atendimentos de uma mesma criança ficam inteiros de um dos lados.}
+\label{fig:metodologia}
+\end{figure*}
+
+\subsection{Pré-processamento}
+
+A limpeza segue a taxonomia da A1~\cite{tan2017}: sentinelas (zeros antropométricos, \texttt{\#VALUE!}, ``Indeterminado'') convertidos em ausência; valores fora de faixas clínicas tratados como ruído; datas em três formatos unificadas; IDADE e IMC recalculados; PPA reconstruída com as tabelas pediátricas de pressão arterial~\cite{nhbpep2004}; e remoção de registros sem alvo, duplicatas e contradições. Como são regras por registro ou critérios fixos, rodam antes da partição. A A2 acrescentou a padronização léxica do convênio, que reduziu as categorias de \dado{convenio-antes} para \dado{convenio-depois}.
+
+As transformações com parâmetro formam um \textit{pipeline} ajustado só no treino de cada partição (Fig.~\ref{fig:metodologia}): (i) numéricas imputadas pela mediana do estrato sexo $\times$ faixa etária, com mediana global como reserva, mais um indicador de ausência por coluna --- a A1 mostrou que a falta de aferição é informativa --- e padronização \textit{z-score}, para que a penalidade L2 da logística não dependa da escala de cada medida (para as árvores, ela é inócua); (ii) categóricas, que são nominais e sem ordem, com a categoria explícita ``Não informado'' e codificação \textit{one-hot}; (iii) convênio codificado pela frequência no treino, evitando o \textit{target encoding}, que usaria o próprio alvo. Não houve reamostragem: o desbalanceamento é moderado, e o peso das classes entrou como hiperparâmetro.
+
+\subsection{Validação e métricas}
+
+A validação cruzada estratificada com $k=10$ é a referência da literatura~\cite{kohavi1995} e a diretriz prática da disciplina para $1.000 < N \leq 100.000$. Usamos \textbf{validação cruzada aninhada}: o laço externo (10 partições) estima o desempenho, e o interno (5 partições, dentro de cada treino externo) escolhe os hiperparâmetros por busca em grade com critério AUC-ROC. Os dois laços usam \texttt{StratifiedGroupKFold} com a chave de paciente, de modo que nenhum paciente, segundo essa chave, aparece em treino e teste. As partições são as mesmas para todos os modelos, e cada atendimento é avaliado uma única vez.
+
+A classe positiva é \emph{Anormal}. A acurácia não serve de critério em classes desbalanceadas~\cite{faceli2021}; reportamos AUC-ROC (discriminação independente do limiar), AUC-PR (desempenho na classe positiva), acurácia balanceada, sensibilidade, especificidade, precisão e F1. Além do limiar 0,5, definimos um \textbf{limiar de triagem}: o maior limiar que atinge sensibilidade $\geq0{,}90$ nas previsões fora da dobra do próprio treino externo, aplicado depois ao teste --- o limiar nunca é escolhido olhando o teste.
+
+\subsection{Algoritmos}
+
+Comparamos: um piso de referência que prevê sempre a prevalência do treino; a \textbf{regressão logística} (LR) com regularização L2, \textit{baseline} simples e interpretável; e dois \textit{ensembles} de árvores, o \textbf{\textit{random forest}} (RF)~\cite{breiman2001} e o \textbf{\textit{gradient boosting}} (GB) baseado em histogramas~\cite{friedman2001,ke2017}, com parada antecipada. A Tabela~\ref{tab:hiper} traz o espaço de busca. A implementação usa scikit-learn~\cite{pedregosa2011}, pandas~\cite{mckinney2010}, NumPy~\cite{harris2020}, SciPy~\cite{virtanen2020} e Matplotlib~\cite{hunter2007}.
+
+\begin{table}[t]
+\centering
+\caption{Espaço de busca e hiperparâmetros mais escolhidos nas 10 partições externas (LR: regressão logística; RF: \textit{random forest}; GB: \textit{gradient boosting})}
+\label{tab:hiper}
+\footnotesize
+\input{tabelas/tab_hiperparametros}
+\end{table}
+
+\subsection{Comparação estatística}
+
+Diferenças entre médias não bastam para declarar um modelo superior. Para um único conjunto de dados, aplicamos o \textbf{teste $t$ 5$\times$2cv} de Dietterich~\cite{dietterich1998}, que controla o erro Tipo I melhor que o teste $t$ sobre as partições de uma validação comum. Cada uma das 10 execuções repete o algoritmo inteiro, inclusive a busca interna, com metades formadas por grupos de paciente. O teste foi aplicado à AUC-ROC e à taxa de erro; os valores-$p$ dos três pares foram corrigidos por Holm~\cite{holm1979}, com $\alpha=0{,}05$.
+
+\section{Resultados e discussão}
+
+\begin{table*}[t]
+\centering
+\caption{Desempenho na validação cruzada aninhada agrupada (média $\pm$ desvio-padrão nas 10 partições externas). Em negrito, o melhor valor entre os três algoritmos (inclusive empates na precisão exibida).}
+\label{tab:metricas}
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\input{tabelas/tab_metricas}
+\end{table*}
+
+\subsection{Desempenho comparado}
+
+Os três algoritmos superam com folga o piso de referência (Tabela~\ref{tab:metricas}): a AUC-ROC sobe de \dado{dummy-aucroc} para valores entre \dado{logistica-aucroc} e \dado{gradientboosting-aucroc}, e a AUC-PR, de \dado{dummy-aucpr} para até \dado{gradientboosting-aucpr}. O \textit{gradient boosting} teve a maior AUC-ROC (\dado{gradientboosting-aucroc}\,$\pm$\,\dado{gradientboosting-aucroc-dp}), seguido de perto pelo \textit{random forest} (\dado{randomforest-aucroc}) e pela logística (\dado{logistica-aucroc}).
+
+O teste 5$\times$2cv (Tabela~\ref{tab:testes}) indica que os dois \textit{ensembles} discriminam melhor que a logística ($p_{\mathrm{Holm}}$ de \dado{logistica-randomforest-aucroc-pholm} e \dado{logistica-gradientboosting-aucroc-pholm}); entre eles, não há diferença significativa ($p_{\mathrm{Holm}}=\dado{randomforest-gradientboosting-aucroc-pholm}$), o que não demonstra que sejam iguais. A vantagem, porém, é pequena --- de \dado{logistica-gradientboosting-aucroc-absdif} a \dado{logistica-randomforest-aucroc-absdif} de AUC --- e desaparece na taxa de erro no limiar 0,5, em que nenhum par difere ($p_{\mathrm{Holm}}\geq\dado{logistica-randomforest-erro-pholm}$). Os modelos não lineares ordenam melhor os pacientes, mas a convergência de três famílias de algoritmos para o mesmo patamar sugere que o limite está mais na informação disponível antes da ausculta do que no algoritmo. Por hiperparâmetro (Tabela~\ref{tab:hiper}), a escolha foi estável na logística ($C=\dado{hp-logistica-c}$ em \dado{hp-logistica-c-n} partições) e na estrutura das árvores (folha mínima de \dado{hp-randomforest-minsamplesleaf} no RF, \dado{hp-randomforest-minsamplesleaf-n}; \dado{hp-gradientboosting-maxleafnodes} folhas no GB, \dado{hp-gradientboosting-maxleafnodes-n}); já o peso de classe do RF se dividiu (balanceado em \dado{hp-randomforest-classweight-n}).
+
+\begin{table}[t]
+\centering
+\caption{Teste $t$ 5$\times$2cv entre pares de algoritmos ($\overline{\Delta}$: média de A $-$ B nas 10 execuções; valores-$p$ corrigidos por Holm; siglas como na Tabela~\ref{tab:hiper})}
+\label{tab:testes}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\input{tabelas/tab_testes}
+\end{table}
+
+\subsection{Limiar de decisão}
+
+No limiar 0,5, o \textit{gradient boosting} tem sensibilidade de \dado{gradientboosting-sensibilidade} e especificidade de \dado{gradientboosting-especificidade}: perderia mais de um terço das cardiopatias, o que é inaceitável numa triagem. O limiar de triagem, escolhido no treino, ficou entre \dado{gradientboosting-limiarmin} e \dado{gradientboosting-limiarmax} e levou a sensibilidade média a \dado{trigradientboosting-sensibilidade} no teste (de \dado{trigradientboosting-sensibilidade-min} a \dado{trigradientboosting-sensibilidade-max} entre as partições), com especificidade de \dado{trigradientboosting-especificidade} e precisão de \dado{trigradientboosting-precisao} (Fig.~\ref{fig:curvas}). Em termos práticos, o modelo dispensaria \dado{tri-normais-dispensados-pct} das crianças normais da fila (\dado{matriztriagem-tn} de \dado{n-normal}), ao custo de deixar passar \dado{tri-cardiopatias-perdidas-pct} das cardiopatias (\dado{matriztriagem-fn} de \dado{n-anormal}). É um ganho de priorização, não um substituto do especialista.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig3_curvas.pdf}
+\caption{Curvas ROC e PR fora da dobra dos três algoritmos; o círculo marca o ponto de operação do \textit{gradient boosting} no limiar de triagem. Linhas pontilhadas: classificador sem informação.}
+\label{fig:curvas}
+\end{figure}
+
+\subsection{Análise dos erros}
+
+A Fig.~\ref{fig:erros}(a--b) mostra as matrizes de confusão agregadas do \textit{gradient boosting}. Os falsos negativos não se distribuem ao acaso: concentram-se onde o encaminhamento não traz sinal prévio. No limiar 0,5, o modelo perde \dado{perfilfn05-motivo1-5parecercardiologico} dos anormais encaminhados para parecer cardiológico (sobretudo avaliação pré-operatória) e \dado{perfilfn05-motivo1-2checkup} dos encaminhados para \textit{check-up}, contra \dado{perfilfn05-motivo1-1cardiopatiajaestabelecida} entre os que já chegam com cardiopatia estabelecida; no limiar de triagem, essas taxas caem para \dado{perfilfntriagem-motivo1-5parecercardiologico}, \dado{perfilfntriagem-motivo1-2checkup} e \dado{perfilfntriagem-motivo1-1cardiopatiajaestabelecida}. O erro também cresce com a idade: \dado{perfilfn05-faixaetaria-lactente} dos lactentes anormais são perdidos, contra \dado{perfilfn05-faixaetaria-adolescente} dos adolescentes. A ausculta segue indispensável: \dado{perfilfn05-pctfncomsopro} dos falsos negativos tinham sopro e seriam detectados por ela. Proporcionalmente, porém, o modelo erra mais nas cardiopatias sem sopro (perde \dado{perfilfn05-sopro-semsopro} delas, contra \dado{perfilfn05-sopro-comsopro} das com sopro; no limiar de triagem, \dado{perfilfntriagem-sopro-semsopro} contra \dado{perfilfntriagem-sopro-comsopro}), que dependem de outros achados do exame.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig4_erros.pdf}
+\caption{Erros e importância. (a--b) Matrizes de confusão fora da dobra do \textit{gradient boosting}, com a taxa por linha. (c) Queda da AUC-ROC ao permutar cada atributo no teste de cada partição.}
+\label{fig:erros}
+\end{figure}
+
+\subsection{Importância dos atributos}
+
+A importância por permutação (Fig.~\ref{fig:erros}(c)) aponta o motivo do encaminhamento como o atributo dominante: permutar MOTIVO2 reduz a AUC do \textit{gradient boosting} em \dado{imp-gradientboosting-motivo2}, seguido de FC (\dado{imp-gradientboosting-fc}), MOTIVO1 (\dado{imp-gradientboosting-motivo1}) e HDA~1 (\dado{imp-gradientboosting-hda1}). Os coeficientes da logística dão o sentido do efeito. Como o modelo é regularizado e usa \textit{one-hot} completo, $e^{\beta}$ é um efeito relativo, sem categoria de referência única: o encaminhamento por sopro tem o maior efeito positivo ($e^{\beta}=\dado{or-catmotivo26sopro}$), seguido da cardiopatia já estabelecida (\dado{or-catmotivo11cardiopatiajaestabelecida}) e da congênita (\dado{or-catmotivo21cardiopatiacongenica}), enquanto \textit{check-up} (\dado{or-catmotivo12checkup}) e parecer cardiológico (\dado{or-catmotivo15parecercardiologico}) puxam o risco para baixo. O modelo aprende, essencialmente, a suspeita do médico que encaminhou, refinada pela frequência cardíaca e pelos sintomas --- clinicamente coerente e compatível com o patamar de desempenho observado. As medidas antropométricas, correlacionadas entre si, dividem a importância, que a permutação de uma de cada vez subestima.
+
+\section{Conclusão}
+
+O objetivo era estimar o risco de cardiopatia antes da ausculta. Sem vazamento, o \textit{gradient boosting} alcança AUC-ROC de \dado{gradientboosting-aucroc}, sem diferença significativa em relação ao \textit{random forest}; os \textit{ensembles} superam a regressão logística de forma estatisticamente significativa, mas por margem pequena, e, com sensibilidade de \dado{tri-sens-pct}, a especificidade fica em \dado{trigradientboosting-especificidade}. A conclusão prática é que esses dados permitem priorizar a fila do especialista, mas não substituir o exame que define o diagnóstico.
+
+\textbf{Limitações.} Os dados vêm de um único hospital e quase todos de \dado{ano-ini} a \dado{ano-fim}, com prevalência em queda ao longo do período; a chave de paciente é aproximada, pois junta crianças nascidas no mesmo dia e não liga retornos sem data de nascimento ou sem sexo registrado; a população inclui \dado{sub-excluidos} encaminhamentos com cardiopatia já estabelecida, positivos fáceis para uma triagem --- sem eles, a AUC agregada cai de \dado{sub-auc-todos} para \dado{sub-auc} e a sensibilidade de triagem, de \dado{trigradientboosting-sensibilidade} para \dado{sub-sens}; a imputação reduz a variância das medidas; e MOTIVO2 depende da qualidade do encaminhamento, que pode variar entre serviços.
+
+\textbf{Trabalhos futuros.} Validação temporal (treinar nos anos iniciais e testar nos finais), calibração das probabilidades, definição do limiar com os custos clínicos de cada erro e, sobretudo, a inclusão de fonocardiogramas obtidos por estetoscópio digital na triagem~\cite{oliveira2022}, que levaria ao modelo a informação do sopro sem depender do especialista.
+
+\section*{Declaração de uso de IA generativa}
+
+Ferramenta: Claude (Anthropic), via Claude Code. Onde e como: apoio na escrita do código Python do experimento, na geração das figuras e tabelas, na redação deste artigo e na produção dos slides. Para quê: acelerar a implementação e a produção do texto. As decisões metodológicas --- inclusive a exclusão de SOPRO e B2 --- e a interpretação dos resultados foram discutidas e aprovadas pelo grupo, e os resultados numéricos citados são gerados automaticamente a partir das saídas do código.
+
+\bibliographystyle{IEEEtran}
+\bibliography{referencias}
+
+\end{document}

@@ -1,0 +1,11 @@
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.42\linewidth}>{\raggedright\arraybackslash}p{0.38\linewidth}@{}}
+\toprule
+Modelo & Espaço de busca & Valor mais escolhido (partições) \\
+\midrule
+LR & $C$ $\in$ \{0{,}01, 0{,}1, 1, 10\}; peso de classe $\in$ \{nenhum, balanceado\} & $C$ = 0{,}1 (8/10); peso de classe = balanceado (10/10) \\
+\addlinespace
+RF & prof. máx. $\in$ \{nenhum, 8, 16\}; mín. por folha $\in$ \{1, 5, 20\}; peso de classe $\in$ \{nenhum, balanceado\} & peso de classe = balanceado ou nenhum (5/10 cada); prof. máx. = 16 (9/10); mín. por folha = 5 (10/10) \\
+\addlinespace
+GB & taxa de aprend. $\in$ \{0{,}05, 0{,}1\}; folhas máx. $\in$ \{15, 31\}; reg. L2 $\in$ \{0, 1\}; peso de classe $\in$ \{nenhum, balanceado\} & peso de classe = balanceado (7/10); reg. L2 = 1 (8/10); taxa de aprend. = 0{,}05 (6/10); folhas máx. = 15 (10/10) \\
+\bottomrule
+\end{tabular}

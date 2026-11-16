@@ -1,0 +1,4 @@
+dummy: AUC 0.500 (67.1 s)
+logistica: AUC 0.770 (168.1 s)
+random_forest: AUC 0.785 (786.7 s)
+gradient_boosting: AUC 0.787 (248.4 s)

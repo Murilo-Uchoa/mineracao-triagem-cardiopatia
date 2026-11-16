@@ -1,0 +1,20 @@
+# Dados de pacientes: não são distribuídos (ver README).
+dados/*.csv
+# Previsões por paciente (ID + diagnóstico) também não saem daqui.
+resultados/previsoes_oof.csv
+
+# Material interno do grupo.
+planejamento/
+guia/
+pacote/
+
+# Ferramentas e artefatos de build.
+node_modules/
+__pycache__/
+.pytest_cache/
+relatorio/*.aux
+relatorio/*.log
+relatorio/*.bbl
+relatorio/*.blg
+relatorio/*.out
+~$*

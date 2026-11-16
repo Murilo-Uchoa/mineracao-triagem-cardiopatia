@@ -1,0 +1,560 @@
+{
+  "melhor": "gradient_boosting",
+  "sem_cardiopatia_estabelecida": {
+    "n": 10340,
+    "auc_roc": 0.7731809095354523,
+    "auc_roc_todos": 0.784552750134942,
+    "sensibilidade_triagem": 0.8799511002444987,
+    "especificidade_triagem": 0.41616
+  },
+  "matriz_05": {
+    "tp": 3076,
+    "fn": 1808,
+    "fp": 1284,
+    "tn": 5286
+  },
+  "matriz_triagem": {
+    "tp": 4393,
+    "fn": 491,
+    "fp": 3964,
+    "tn": 2606
+  },
+  "limiares_triagem": [
+    0.27945533960497115,
+    0.2799075261734841,
+    0.28681757208757347,
+    0.28888692589098847,
+    0.23655830194926789,
+    0.22809797806624926,
+    0.28588436555877816,
+    0.22974946993786066,
+    0.29228238265380335,
+    0.28472428650519505
+  ],
+  "perfil_fn_05": {
+    "sopro": {
+      "com sopro": {
+        "positivos": 4168,
+        "fn": 1346,
+        "taxa_fn": 0.32293666026871404
+      },
+      "sem sopro": {
+        "positivos": 716,
+        "fn": 462,
+        "taxa_fn": 0.6452513966480447
+      }
+    },
+    "faixa_etaria": {
+      "Lactente": {
+        "positivos": 2010,
+        "fn": 380,
+        "taxa_fn": 0.1890547263681592
+      },
+      "Não informado": {
+        "positivos": 348,
+        "fn": 137,
+        "taxa_fn": 0.3936781609195402
+      },
+      "Adolescente": {
+        "positivos": 274,
+        "fn": 179,
+        "taxa_fn": 0.6532846715328468
+      },
+      "Pré-escolar": {
+        "positivos": 1292,
+        "fn": 544,
+        "taxa_fn": 0.42105263157894735
+      },
+      "Escolar": {
+        "positivos": 960,
+        "fn": 568,
+        "taxa_fn": 0.5916666666666667
+      }
+    },
+    "motivo1": {
+      "6 - Suspeita de cardiopatia": {
+        "positivos": 2395,
+        "fn": 420,
+        "taxa_fn": 0.17536534446764093
+      },
+      "2 - Check-up": {
+        "positivos": 182,
+        "fn": 146,
+        "taxa_fn": 0.8021978021978022
+      },
+      "5 - Parecer cardiológico": {
+        "positivos": 1320,
+        "fn": 1135,
+        "taxa_fn": 0.8598484848484849
+      },
+      "1 - Cardiopatia já estabelecida": {
+        "positivos": 794,
+        "fn": 25,
+        "taxa_fn": 0.031486146095717885
+      },
+      "Não informado": {
+        "positivos": 64,
+        "fn": 22,
+        "taxa_fn": 0.34375
+      },
+      "7 - Outro": {
+        "positivos": 129,
+        "fn": 60,
+        "taxa_fn": 0.46511627906976744
+      }
+    },
+    "pa_medida": {
+      "False": {
+        "positivos": 3059,
+        "fn": 814,
+        "taxa_fn": 0.2661000326904217
+      },
+      "True": {
+        "positivos": 1825,
+        "fn": 994,
+        "taxa_fn": 0.5446575342465754
+      }
+    },
+    "pct_fn_com_sopro": 74.44690265486726,
+    "pct_positivos_com_sopro": 85.33988533988534,
+    "pct_fn_sem_sopro": 25.55309734513274
+  },
+  "perfil_fn_triagem": {
+    "sopro": {
+      "com sopro": {
+        "positivos": 4168,
+        "fn": 345,
+        "taxa_fn": 0.08277351247600767
+      },
+      "sem sopro": {
+        "positivos": 716,
+        "fn": 146,
+        "taxa_fn": 0.20391061452513967
+      }
+    },
+    "faixa_etaria": {
+      "Lactente": {
+        "positivos": 2010,
+        "fn": 54,
+        "taxa_fn": 0.026865671641791045
+      },
+      "Não informado": {
+        "positivos": 348,
+        "fn": 30,
+        "taxa_fn": 0.08620689655172414
+      },
+      "Adolescente": {
+        "positivos": 274,
+        "fn": 85,
+        "taxa_fn": 0.3102189781021898
+      },
+      "Pré-escolar": {
+        "positivos": 1292,
+        "fn": 141,
+        "taxa_fn": 0.10913312693498452
+      },
+      "Escolar": {
+        "positivos": 960,
+        "fn": 181,
+        "taxa_fn": 0.18854166666666666
+      }
+    },
+    "motivo1": {
+      "6 - Suspeita de cardiopatia": {
+        "positivos": 2395,
+        "fn": 62,
+        "taxa_fn": 0.025887265135699375
+      },
+      "2 - Check-up": {
+        "positivos": 182,
+        "fn": 43,
+        "taxa_fn": 0.23626373626373626
+      },
+      "5 - Parecer cardiológico": {
+        "positivos": 1320,
+        "fn": 373,
+        "taxa_fn": 0.2825757575757576
+      },
+      "1 - Cardiopatia já estabelecida": {
+        "positivos": 794,
+        "fn": 0,
+        "taxa_fn": 0.0
+      },
+      "Não informado": {
+        "positivos": 64,
+        "fn": 2,
+        "taxa_fn": 0.03125
+      },
+      "7 - Outro": {
+        "positivos": 129,
+        "fn": 11,
+        "taxa_fn": 0.08527131782945736
+      }
+    },
+    "pa_medida": {
+      "False": {
+        "positivos": 3059,
+        "fn": 218,
+        "taxa_fn": 0.07126511932003923
+      },
+      "True": {
+        "positivos": 1825,
+        "fn": 273,
+        "taxa_fn": 0.1495890410958904
+      }
+    },
+    "pct_fn_com_sopro": 70.26476578411406,
+    "pct_positivos_com_sopro": 85.33988533988534,
+    "pct_fn_sem_sopro": 29.735234215885946
+  },
+  "importancia": {
+    "gradient_boosting": {
+      "MOTIVO2": {
+        "media": 0.10121271988693759,
+        "dp": 0.015381138635915597
+      },
+      "FC": {
+        "media": 0.032121931670686985,
+        "dp": 0.007430294002963652
+      },
+      "MOTIVO1": {
+        "media": 0.030744011822587382,
+        "dp": 0.007100087027828579
+      },
+      "HDA 1": {
+        "media": 0.01992982076849184,
+        "dp": 0.0032396483286195148
+      },
+      "Peso": {
+        "media": 0.009546840929906333,
+        "dp": 0.0028696381686415216
+      },
+      "Convenio": {
+        "media": 0.008274591999467751,
+        "dp": 0.004295824576395692
+      },
+      "IDADE": {
+        "media": 0.004004889512776337,
+        "dp": 0.002502555637883553
+      },
+      "PPA": {
+        "media": 0.0038702795447935626,
+        "dp": 0.0015899868237529804
+      },
+      "IMC": {
+        "media": 0.002978510799627202,
+        "dp": 0.0017117652626189217
+      },
+      "SEXO": {
+        "media": 0.0026199298171687736,
+        "dp": 0.001672091174010426
+      },
+      "PULSOS": {
+        "media": 0.0019767963385911758,
+        "dp": 0.0012071892172555276
+      },
+      "Altura": {
+        "media": 0.00151044337450303,
+        "dp": 0.0007993046516643122
+      },
+      "PA_medida": {
+        "media": 0.0008061170735269563,
+        "dp": 0.0008195482253633058
+      }
+    },
+    "logistica": {
+      "MOTIVO2": {
+        "media": 0.08514507510979644,
+        "dp": 0.01262369600266887
+      },
+      "MOTIVO1": {
+        "media": 0.04825701073351148,
+        "dp": 0.012045777212672089
+      },
+      "HDA 1": {
+        "media": 0.02216503725971364,
+        "dp": 0.004734472120768011
+      },
+      "FC": {
+        "media": 0.021961374917310674,
+        "dp": 0.005213342646732653
+      },
+      "PPA": {
+        "media": 0.008702734106743005,
+        "dp": 0.003080428248260075
+      },
+      "IDADE": {
+        "media": 0.0035187444529556308,
+        "dp": 0.004033078617642296
+      },
+      "IMC": {
+        "media": 0.0031326120810773296,
+        "dp": 0.0014691960634984646
+      },
+      "Altura": {
+        "media": 0.0024805666090202,
+        "dp": 0.0022504897689906342
+      },
+      "PULSOS": {
+        "media": 0.0022330186478838523,
+        "dp": 0.0016119774462426133
+      },
+      "Peso": {
+        "media": 0.0011473269574503709,
+        "dp": 0.001405432251832891
+      },
+      "PA_medida": {
+        "media": 0.00045721094727222523,
+        "dp": 0.0011532234210602202
+      },
+      "SEXO": {
+        "media": 0.00015600397962527992,
+        "dp": 0.0007246092132208991
+      },
+      "Convenio": {
+        "media": -0.00020922474178967977,
+        "dp": 0.0005703293086657199
+      }
+    }
+  },
+  "logistica": {
+    "params": {
+      "C": 0.1,
+      "class_weight": "balanced"
+    },
+    "coeficientes": {
+      "cat__MOTIVO2_6 - Sopro": {
+        "coef": 1.228462501851255,
+        "razao_de_chance": 3.4159734438627907
+      },
+      "cat__MOTIVO1_1 - Cardiopatia já estabelecida": {
+        "coef": 0.69016774860329,
+        "razao_de_chance": 1.9940500042918827
+      },
+      "cat__PULSOS_Normais": {
+        "coef": -0.6537183733327606,
+        "razao_de_chance": 0.5201082201780282
+      },
+      "cat__MOTIVO2_1 - Cardiopatia congenica": {
+        "coef": 0.5978431527447292,
+        "razao_de_chance": 1.8181930036509677
+      },
+      "cat__MOTIVO1_2 - Check-up": {
+        "coef": -0.5728623322582049,
+        "razao_de_chance": 0.563909031444421
+      },
+      "cat__MOTIVO1_5 - Parecer cardiológico": {
+        "coef": -0.5438513559041398,
+        "razao_de_chance": 0.5805081978440843
+      },
+      "cat__HDA 1_Não informado": {
+        "coef": -0.4773803775758603,
+        "razao_de_chance": 0.6204064956864604
+      },
+      "cat__MOTIVO2_6 - HAS/dislipidemia/obesidade": {
+        "coef": -0.4512792710688262,
+        "razao_de_chance": 0.6368129739025428
+      },
+      "cat__PULSOS_Femorais diminuídos": {
+        "coef": 0.44346998329898035,
+        "razao_de_chance": 1.558104445355713
+      },
+      "cat__HDA 1_Palpitacao": {
+        "coef": -0.40637761289033086,
+        "razao_de_chance": 0.6660586076158107
+      },
+      "cat__MOTIVO2_6 - Cardiopatia na familia": {
+        "coef": -0.3679031839437572,
+        "razao_de_chance": 0.6921841929885519
+      },
+      "cat__MOTIVO2_6 - Dor precordial": {
+        "coef": -0.3452489591385139,
+        "razao_de_chance": 0.7080440574848812
+      },
+      "cat__MOTIVO2_5 - Cirurgia": {
+        "coef": -0.33520858193786535,
+        "razao_de_chance": 0.7151888953080991
+      },
+      "cat__PPA_HAS-2": {
+        "coef": 0.3324225576321093,
+        "razao_de_chance": 1.3943419138641948
+      },
+      "cat__PPA_Não aferida": {
+        "coef": -0.32859977698963105,
+        "razao_de_chance": 0.7199310920849731
+      },
+      "num__FC": {
+        "coef": 0.2855714919842398,
+        "razao_de_chance": 1.3305221936550569
+      },
+      "cat__HDA 1_Ganho de peso": {
+        "coef": 0.27508798263440815,
+        "razao_de_chance": 1.3166465118004202
+      },
+      "cat__MOTIVO2_6 - Dispnéia": {
+        "coef": -0.27435331124868934,
+        "razao_de_chance": 0.7600634888360496
+      },
+      "cat__MOTIVO2_6 - Cianose": {
+        "coef": -0.2704137820718665,
+        "razao_de_chance": 0.7630636869302935
+      },
+      "cat__MOTIVO2_1 - Cardiopatia adquirida": {
+        "coef": 0.2567033396655476,
+        "razao_de_chance": 1.292661588452701
+      },
+      "cat__HDA 1_Dispneia": {
+        "coef": 0.25374411400888813,
+        "razao_de_chance": 1.28884196546532
+      },
+      "cat__MOTIVO2_5 - Uso de cisaprida": {
+        "coef": 0.2363465018886389,
+        "razao_de_chance": 1.2666131179761757
+      },
+      "cat__PULSOS_Não informado": {
+        "coef": -0.23552926918695208,
+        "razao_de_chance": 0.7901525355480663
+      },
+      "cat__MOTIVO1_Não informado": {
+        "coef": 0.2188439019411601,
+        "razao_de_chance": 1.2446369761070233
+      },
+      "cat__HDA 1_Assintomático": {
+        "coef": 0.21852902477431319,
+        "razao_de_chance": 1.2442451300371615
+      },
+      "cat__MOTIVO2_6 - Palpitação/taquicardia/arritmia": {
+        "coef": -0.20417962636592682,
+        "razao_de_chance": 0.8153159057999226
+      },
+      "cat__PULSOS_Amplos": {
+        "coef": 0.18484866991492965,
+        "razao_de_chance": 1.2030363707554268
+      },
+      "cat__HDA 1_Cianose": {
+        "coef": 0.16445941788937476,
+        "razao_de_chance": 1.1787557321854194
+      },
+      "cat__PULSOS_Outro": {
+        "coef": 0.15879578564125169,
+        "razao_de_chance": 1.1720985628823364
+      },
+      "cat__PULSOS_Diminuídos": {
+        "coef": 0.15855197496631881,
+        "razao_de_chance": 1.1718128275747066
+      },
+      "cat__MOTIVO1_6 - Suspeita de cardiopatia": {
+        "coef": 0.1497385182096029,
+        "razao_de_chance": 1.1615304839457758
+      },
+      "cat__MOTIVO2_5 - Atividade física": {
+        "coef": 0.13443482410469054,
+        "razao_de_chance": 1.1438901025112118
+      },
+      "cat__HDA 1_Outro": {
+        "coef": 0.11874826056596156,
+        "razao_de_chance": 1.1260864022501857
+      },
+      "cat__MOTIVO2_6 - Cansaço": {
+        "coef": 0.11606991052486947,
+        "razao_de_chance": 1.1230743841084765
+      },
+      "cat__MOTIVO1_7 - Outro": {
+        "coef": 0.11438229071006,
+        "razao_de_chance": 1.1211806599170382
+      },
+      "cat__HDA 1_Desmaio/tontura": {
+        "coef": -0.10152376744237589,
+        "razao_de_chance": 0.9034597061605353
+      },
+      "cat__MOTIVO2_Outro": {
+        "coef": -0.1008490712814792,
+        "razao_de_chance": 0.9040694726362255
+      },
+      "num__IDADE_ausente": {
+        "coef": 0.09195746392978743,
+        "razao_de_chance": 1.0963181880215882
+      },
+      "cat__MOTIVO2_Não informado": {
+        "coef": -0.08979135065420289,
+        "razao_de_chance": 0.9141218963103135
+      },
+      "num__IMC": {
+        "coef": -0.08111904032642761,
+        "razao_de_chance": 0.9220839197403085
+      },
+      "cat__SEXO_M": {
+        "coef": 0.07972938003915798,
+        "razao_de_chance": 1.0829939482348983
+      },
+      "num__FC_ausente": {
+        "coef": 0.07594504290900737,
+        "razao_de_chance": 1.078903279142274
+      },
+      "num__Altura_ausente": {
+        "coef": -0.07454887376818194,
+        "razao_de_chance": 0.9281621101706325
+      },
+      "cat__MOTIVO2_6 - Alterações de pulso/perfusão": {
+        "coef": -0.07421551407909507,
+        "razao_de_chance": 0.9284715735815486
+      },
+      "num__Peso": {
+        "coef": -0.07056322776645209,
+        "razao_de_chance": 0.9318688176791033
+      },
+      "num__Altura": {
+        "coef": -0.06635382605258136,
+        "razao_de_chance": 0.9357996953947537
+      },
+      "num__IMC_ausente": {
+        "coef": 0.058081170897018954,
+        "razao_de_chance": 1.059801017218248
+      },
+      "cat__PPA_Normal": {
+        "coef": 0.05794258483217008,
+        "razao_de_chance": 1.0596541537425996
+      },
+      "bin__PA_medida": {
+        "coef": -0.04974190227941847,
+        "razao_de_chance": 0.9514749663324582
+      },
+      "conv__Convenio_freq": {
+        "coef": 0.03540942222635072,
+        "razao_de_chance": 1.036043801336984
+      },
+      "cat__SEXO_F": {
+        "coef": -0.032366064670454865,
+        "razao_de_chance": 0.9681521109200378
+      },
+      "num__IDADE": {
+        "coef": -0.023609568086451392,
+        "razao_de_chance": 0.9766669572764963
+      },
+      "num__Peso_ausente": {
+        "coef": -0.01985231191446816,
+        "razao_de_chance": 0.9803434476627174
+      },
+      "cat__PPA_Pré-hipertensão": {
+        "coef": -0.012478490691331542,
+        "razao_de_chance": 0.9875990428380796
+      },
+      "cat__HDA 1_Dor precordial": {
+        "coef": 0.01113172933739611,
+        "razao_de_chance": 1.011193917576415
+      },
+      "cat__SEXO_Não informado": {
+        "coef": 0.00905545593306567,
+        "razao_de_chance": 1.00909658061466
+      },
+      "cat__PPA_HAS-1": {
+        "coef": 0.007131896518450703,
+        "razao_de_chance": 1.0071573890597794
+      },
+      "cat__MOTIVO2_6 - Cianose e dispnéia": {
+        "coef": 1.1923122575047633e-06,
+        "razao_de_chance": 1.0000011923129684
+      }
+    }
+  }
+}

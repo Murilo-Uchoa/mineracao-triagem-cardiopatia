@@ -1,0 +1,13 @@
+replicação 1, metade 1 concluída
+replicação 1, metade 2 concluída
+replicação 2, metade 1 concluída
+replicação 2, metade 2 concluída
+replicação 3, metade 1 concluída
+replicação 3, metade 2 concluída
+replicação 4, metade 1 concluída
+replicação 4, metade 2 concluída
+replicação 5, metade 1 concluída
+replicação 5, metade 2 concluída
+logistica x random_forest {'t': -4.5663, 'p': 0.006, 'dif_media': -0.0119, 'p_holm': 0.0181}
+logistica x gradient_boosting {'t': -3.4353, 'p': 0.0185, 'dif_media': -0.0113, 'p_holm': 0.0371}
+random_forest x gradient_boosting {'t': 0.4162, 'p': 0.6945, 'dif_media': 0.0007, 'p_holm': 0.6945}

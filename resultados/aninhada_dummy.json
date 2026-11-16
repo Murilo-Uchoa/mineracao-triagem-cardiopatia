@@ -1,0 +1,486 @@
+{
+  "modelo": "dummy",
+  "folds": [
+    {
+      "fold": 0,
+      "n_teste": 1145,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.5737991266375546,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42633684976355035,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.4262008733624454,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.4262008733624454,
+        "f1": 0.5976729944886712
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 1,
+      "n_teste": 1145,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.5737991266375546,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.4263885520252243,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.4262008733624454,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.4262008733624454,
+        "f1": 0.5976729944886712
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 2,
+      "n_teste": 1145,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.5737991266375546,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42628516003879724,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.4262008733624454,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.4262008733624454,
+        "f1": 0.5976729944886712
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 3,
+      "n_teste": 1145,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.5737991266375546,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.4263885520252243,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4262008733624454,
+        "acuracia": 0.4262008733624454,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.4262008733624454,
+        "f1": 0.5976729944886712
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 4,
+      "n_teste": 1146,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4258289703315881,
+        "acuracia": 0.5741710296684118,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.4264064015518913,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.4258289703315881,
+        "acuracia": 0.4258289703315881,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.4258289703315881,
+        "f1": 0.5973072215422277
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 5,
+      "n_teste": 1146,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.5732984293193717,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42633684976355035,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.42670157068062825,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.42670157068062825,
+        "f1": 0.5981651376146788
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 6,
+      "n_teste": 1146,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.5732984293193717,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42631898120072764,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.42670157068062825,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.42670157068062825,
+        "f1": 0.5981651376146788
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 7,
+      "n_teste": 1146,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.5732984293193717,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42633684976355035,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.42670157068062825,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.42670157068062825,
+        "f1": 0.5981651376146788
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 8,
+      "n_teste": 1146,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.5732984293193717,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.4262672811059907,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42670157068062825,
+        "acuracia": 0.42670157068062825,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.42670157068062825,
+        "f1": 0.5981651376146788
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    },
+    {
+      "fold": 9,
+      "n_teste": 1144,
+      "params": {},
+      "metricas_05": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42657342657342656,
+        "acuracia": 0.5734265734265734,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 0.0,
+        "especificidade": 1.0,
+        "precisao": 0.0,
+        "f1": 0.0
+      },
+      "limiar_triagem": 0.42633684976355035,
+      "metricas_triagem": {
+        "auc_roc": 0.5,
+        "auc_pr": 0.42657342657342656,
+        "acuracia": 0.42657342657342656,
+        "acuracia_balanceada": 0.5,
+        "sensibilidade": 1.0,
+        "especificidade": 0.0,
+        "precisao": 0.42657342657342656,
+        "f1": 0.5980392156862745
+      },
+      "importancia": {
+        "Peso": 0.0,
+        "Altura": 0.0,
+        "IMC": 0.0,
+        "IDADE": 0.0,
+        "FC": 0.0,
+        "PA_medida": 0.0,
+        "PPA": 0.0,
+        "PULSOS": 0.0,
+        "HDA 1": 0.0,
+        "SEXO": 0.0,
+        "MOTIVO1": 0.0,
+        "MOTIVO2": 0.0,
+        "Convenio": 0.0
+      }
+    }
+  ],
+  "resumo": {
+    "limiar_05": {
+      "auc_roc": {
+        "media": 0.5,
+        "dp": 0.0
+      },
+      "auc_pr": {
+        "media": 0.4264012173077309,
+        "dp": 0.00031243168373075545
+      },
+      "acuracia": {
+        "media": 0.573598782692269,
+        "dp": 0.00031243168373076786
+      },
+      "acuracia_balanceada": {
+        "media": 0.5,
+        "dp": 0.0
+      },
+      "sensibilidade": {
+        "media": 0.0,
+        "dp": 0.0
+      },
+      "especificidade": {
+        "media": 1.0,
+        "dp": 0.0
+      },
+      "precisao": {
+        "media": 0.0,
+        "dp": 0.0
+      },
+      "f1": {
+        "media": 0.0,
+        "dp": 0.0
+      }
+    },
+    "triagem": {
+      "auc_roc": {
+        "media": 0.5,
+        "dp": 0.0
+      },
+      "auc_pr": {
+        "media": 0.4264012173077309,
+        "dp": 0.00031243168373075545
+      },
+      "acuracia": {
+        "media": 0.4264012173077309,
+        "dp": 0.00031243168373075545
+      },
+      "acuracia_balanceada": {
+        "media": 0.5,
+        "dp": 0.0
+      },
+      "sensibilidade": {
+        "media": 1.0,
+        "dp": 0.0
+      },
+      "especificidade": {
+        "media": 0.0,
+        "dp": 0.0
+      },
+      "precisao": {
+        "media": 0.4264012173077309,
+        "dp": 0.00031243168373075545
+      },
+      "f1": {
+        "media": 0.5978698965641902,
+        "dp": 0.00030714147416915065
+      }
+    }
+  },
+  "segundos": 67.1
+}

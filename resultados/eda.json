@@ -1,0 +1,245 @@
+{
+  "n_bruto": 12873,
+  "n": 11454,
+  "n_anormal": 4884,
+  "pct_anormal": 42.640125720272394,
+  "atributos_brutos": 21,
+  "atributos_limpos": 20,
+  "atributos_modelo": 13,
+  "ausencia_pct": {
+    "Peso": 17.085734241313077,
+    "Altura": 30.146673651126243,
+    "IMC": 33.490483673825736,
+    "IDADE": 6.696350619870787,
+    "FC": 6.163785577090972,
+    "PA_medida": 0.0,
+    "PPA": 0.0,
+    "PULSOS": 0.29683953204120833,
+    "HDA 1": 25.903614457831324,
+    "SEXO": 4.539898725336127,
+    "MOTIVO1": 1.1873581281648333,
+    "MOTIVO2": 22.079622839182818,
+    "Convenio": 27.510040160642568
+  },
+  "sopro": {
+    "prevalencia": {
+      "Ausente": {
+        "n": 7091,
+        "pct_anormal": 10.083204061486391
+      },
+      "Contínuo": {
+        "n": 44,
+        "pct_anormal": 79.54545454545455
+      },
+      "Diastólico": {
+        "n": 9,
+        "pct_anormal": 100.0
+      },
+      "Não informado": {
+        "n": 9,
+        "pct_anormal": 11.11111111111111
+      },
+      "Sistólico": {
+        "n": 4298,
+        "pct_anormal": 95.88180549092601
+      },
+      "Sistólico e diastólico": {
+        "n": 3,
+        "pct_anormal": 100.0
+      }
+    },
+    "oner": {
+      "acuracia": 0.9212502182643618,
+      "sensibilidade": 0.8533988533988534,
+      "especificidade": 0.971689497716895
+    }
+  },
+  "b2": {
+    "prevalencia": {
+      "Desdob fixo": {
+        "n": 148,
+        "pct_anormal": 89.86486486486487
+      },
+      "Hiperfonética": {
+        "n": 285,
+        "pct_anormal": 97.89473684210527
+      },
+      "Normal": {
+        "n": 10855,
+        "pct_anormal": 39.86181483187472
+      },
+      "Não informado": {
+        "n": 17,
+        "pct_anormal": 41.17647058823529
+      },
+      "Outro": {
+        "n": 74,
+        "pct_anormal": 87.83783783783784
+      },
+      "Única": {
+        "n": 75,
+        "pct_anormal": 97.33333333333334
+      }
+    }
+  },
+  "pulsos": {
+    "prevalencia": {
+      "Amplos": {
+        "n": 52,
+        "pct_anormal": 86.53846153846155
+      },
+      "Diminuídos": {
+        "n": 15,
+        "pct_anormal": 86.66666666666667
+      },
+      "Femorais diminuídos": {
+        "n": 38,
+        "pct_anormal": 92.10526315789474
+      },
+      "Normais": {
+        "n": 11279,
+        "pct_anormal": 42.09593049029169
+      },
+      "Não informado": {
+        "n": 34,
+        "pct_anormal": 50.0
+      },
+      "Outro": {
+        "n": 36,
+        "pct_anormal": 72.22222222222221
+      }
+    }
+  },
+  "periodo": {
+    "sem_data": 153,
+    "pct_2003_2010": 99.8672683833289,
+    "ano_min": 1992,
+    "ano_max": 2023
+  },
+  "auc_univariada": {
+    "Peso": {
+      "auc": 0.6457788070799879,
+      "cobertura": 0.8291426575868692
+    },
+    "Altura": {
+      "auc": 0.6378014435054427,
+      "cobertura": 0.6985332634887376
+    },
+    "IMC": {
+      "auc": 0.6001512727970595,
+      "cobertura": 0.6650951632617427
+    },
+    "IDADE": {
+      "auc": 0.6271819518886391,
+      "cobertura": 0.9330364938012922
+    },
+    "FC": {
+      "auc": 0.6355279518313415,
+      "cobertura": 0.9383621442290903
+    },
+    "PA_medida": {
+      "auc": 0.5533431314253232,
+      "cobertura": 1.0
+    },
+    "PPA": {
+      "auc": 0.5455640416256854,
+      "cobertura": 1.0
+    },
+    "PULSOS": {
+      "auc": 0.508905091268105,
+      "cobertura": 1.0
+    },
+    "HDA 1": {
+      "auc": 0.5614356105794462,
+      "cobertura": 1.0
+    },
+    "SEXO": {
+      "auc": 0.5114894938525075,
+      "cobertura": 1.0
+    },
+    "MOTIVO1": {
+      "auc": 0.6827740100000372,
+      "cobertura": 1.0
+    },
+    "MOTIVO2": {
+      "auc": 0.7209746016252866,
+      "cobertura": 1.0
+    },
+    "Convenio": {
+      "auc": 0.5700081931246315,
+      "cobertura": 1.0
+    },
+    "SOPRO": {
+      "auc": 0.9076340817779174,
+      "cobertura": 1.0
+    },
+    "B2": {
+      "auc": 0.548503500387062,
+      "cobertura": 1.0
+    }
+  },
+  "retornos": {
+    "pares_consecutivos": 168,
+    "esperado_ao_acaso": 2.068605637342156,
+    "n_grupos": 7879,
+    "linhas_sem_dn": 642,
+    "grupos_com_dn": 7237,
+    "grupos_multiplos": 2476,
+    "linhas_em_grupos_multiplos": 6051,
+    "maior_grupo": 14,
+    "grupos_mesmo_dia": 111,
+    "mesmo_dia_alvo_divergente": 22
+  },
+  "convenio": {
+    "categorias_antes": 367,
+    "categorias_depois": 228,
+    "sus": {
+      "n": 66,
+      "pct_anormal": 95.45454545454545
+    }
+  },
+  "motivo2_sopro": {
+    "n": 2247,
+    "pct_anormal": 76.19047619047619,
+    "sem_sopro_confirmado": 498,
+    "pct_normal_sem_confirmacao": 88.75502008032129
+  },
+  "prevalencia_por_ano": {
+    "2003": {
+      "n": 855,
+      "pct_anormal": 53.216374269005854
+    },
+    "2004": {
+      "n": 1262,
+      "pct_anormal": 46.592709984152144
+    },
+    "2005": {
+      "n": 1408,
+      "pct_anormal": 48.79261363636363
+    },
+    "2006": {
+      "n": 1429,
+      "pct_anormal": 43.52694191742477
+    },
+    "2007": {
+      "n": 1586,
+      "pct_anormal": 41.488020176544765
+    },
+    "2008": {
+      "n": 1816,
+      "pct_anormal": 43.11674008810573
+    },
+    "2009": {
+      "n": 2199,
+      "pct_anormal": 36.83492496589359
+    },
+    "2010": {
+      "n": 731,
+      "pct_anormal": 29.00136798905609
+    }
+  },
+  "ordem_id": {
+    "concordancia_vizinhos": 0.5205622980878373,
+    "esperado_ao_acaso": 0.5108335498826791
+  }
+}

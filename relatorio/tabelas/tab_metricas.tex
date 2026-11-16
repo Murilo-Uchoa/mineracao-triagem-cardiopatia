@@ -1,0 +1,12 @@
+\begin{tabular}{@{}lccccccccc@{}}
+\toprule
+ & \multicolumn{2}{c}{Independentes do limiar} & \multicolumn{4}{c}{Limiar 0{,}5} & \multicolumn{3}{c}{Limiar de triagem} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-7}\cmidrule(l){8-10}
+Modelo & AUC-ROC & AUC-PR & Acur. bal. & Sensib. & Especif. & F1 & Sensib. & Especif. & Precisão \\
+\midrule
+Classe majoritária & 0{,}500\,$\pm$\,0{,}000 & 0{,}426\,$\pm$\,0{,}000 & 0{,}500\,$\pm$\,0{,}000 & 0{,}000\,$\pm$\,0{,}000 & 1{,}000\,$\pm$\,0{,}000 & 0{,}000\,$\pm$\,0{,}000 & 1{,}000\,$\pm$\,0{,}000 & 0{,}000\,$\pm$\,0{,}000 & 0{,}426\,$\pm$\,0{,}000 \\
+Regressão Logística & 0{,}770\,$\pm$\,0{,}014 & 0{,}715\,$\pm$\,0{,}021 & 0{,}708\,$\pm$\,0{,}010 & 0{,}623\,$\pm$\,0{,}019 & 0{,}794\,$\pm$\,0{,}019 & 0{,}656\,$\pm$\,0{,}013 & \textbf{0{,}899\,$\pm$\,0{,}012} & 0{,}341\,$\pm$\,0{,}007 & 0{,}503\,$\pm$\,0{,}004 \\
+Random Forest & 0{,}785\,$\pm$\,0{,}015 & 0{,}734\,$\pm$\,0{,}026 & 0{,}715\,$\pm$\,0{,}009 & 0{,}610\,$\pm$\,0{,}037 & \textbf{0{,}819\,$\pm$\,0{,}028} & 0{,}658\,$\pm$\,0{,}017 & 0{,}898\,$\pm$\,0{,}014 & \textbf{0{,}400\,$\pm$\,0{,}012} & \textbf{0{,}527\,$\pm$\,0{,}006} \\
+Gradient Boosting & \textbf{0{,}787\,$\pm$\,0{,}014} & \textbf{0{,}738\,$\pm$\,0{,}025} & \textbf{0{,}717\,$\pm$\,0{,}014} & \textbf{0{,}630\,$\pm$\,0{,}045} & 0{,}805\,$\pm$\,0{,}038 & \textbf{0{,}665\,$\pm$\,0{,}021} & \textbf{0{,}899\,$\pm$\,0{,}018} & 0{,}397\,$\pm$\,0{,}019 & 0{,}526\,$\pm$\,0{,}008 \\
+\bottomrule
+\end{tabular}
