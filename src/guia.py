@@ -117,14 +117,24 @@ lista([
 # ------------------------------------------------------- 2. apresentação
 titulo("2. Roteiro da apresentação (15 min)")
 nomes = GRUPO["integrantes"]
+
+
+def pelo_prenome(prenome, reserva):
+    """Nome do integrante pelo prenome; a ordem de fala não é a de autoria."""
+    return next((n for n in nomes if n.startswith(prenome)), reserva)
+
+
 tabela = doc.add_table(rows=1, cols=3)
 tabela.style = "Light Grid Accent 1"
 for celula, texto in zip(tabela.rows[0].cells, ["Slides", "Quem", "Assunto (≈ 5 min por pessoa)"]):
     celula.text = texto
 for faixa, quem, assunto in [
-    ("1–5", nomes[0], "Problema, dados e as três formas de vazamento (sopro, auditoria dos atributos, retornos e imputação)"),
-    ("6–9", nomes[1], "Pré-processamento, validação aninhada agrupada, algoritmos, métricas e AUC dos modelos"),
-    ("10–14", nomes[2], "Teste estatístico, limiar e matrizes de confusão, erros, importância e conclusão"),
+    ("1–6", pelo_prenome("Felipe", "Integrante 1"),
+     "Problema, dados, as três formas de vazamento (sopro, auditoria dos atributos, retornos e imputação) e pré-processamento"),
+    ("7–10", pelo_prenome("Murilo", "Integrante 2"),
+     "Validação aninhada agrupada, algoritmos e métricas, AUC dos modelos e teste estatístico 5×2cv"),
+    ("11–14", pelo_prenome("João", "Integrante 3"),
+     "Limiar e matrizes de confusão, erros, importância dos atributos e conclusão"),
 ]:
     linha = tabela.add_row().cells
     linha[0].text, linha[1].text, linha[2].text = faixa, quem, assunto

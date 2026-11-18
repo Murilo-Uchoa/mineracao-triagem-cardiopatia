@@ -148,7 +148,11 @@ const matriz = (slide, { x, y, m, rotulo }) => {
 };
 
 const notas = (slide, quem, t) => slide.addNotes(`[${quem}] ${t}`);
-const [P1, P2, P3] = GRUPO.nomes.length === 3 ? GRUPO.nomes : ["Integrante 1", "Integrante 2", "Integrante 3"];
+// Ordem de fala (não a de autoria): Felipe 1–6, Murilo 7–10, João 11–14.
+const pelo_prenome = (prenome, reserva) => GRUPO.nomes.find((n) => n.startsWith(prenome)) || reserva;
+const P1 = pelo_prenome("Felipe", "Integrante 1");
+const P2 = pelo_prenome("Murilo", "Integrante 2");
+const P3 = pelo_prenome("João", "Integrante 3");
 
 const mt = INT.matriz_triagem;
 const m05 = INT.matriz_05;
@@ -166,7 +170,7 @@ texto(s1, "Mineração de Dados / KDD · Avaliação A2 · Instituto de Informá
   x: MARGEM + 0.34, y: 4.22, w: UTIL - 0.34, h: 0.36, fontSize: 14, color: "8A93A8",
 });
 texto(s1, GRUPO.linha("  ·  "), { x: MARGEM, y: 6.2, w: UTIL, h: 0.4, fontSize: 13, color: "8A93A8" });
-notas(s1, P1, "Apresentação da A2, continuação da A1. Pergunta: dá para estimar o risco de cardiopatia antes da ausculta, sem trapacear com vazamento de dados? Divisão: problema e vazamento (slides 1–5); metodologia e resultados gerais (6–9); comparação, limiar, erros e conclusão (10–14).");
+notas(s1, P1, `Apresentação da A2, continuação da A1. Pergunta: dá para estimar o risco de cardiopatia antes da ausculta, sem trapacear com vazamento de dados? Divisão: problema, vazamento e pré-processamento (slides 1–6, ${P1}); validação, algoritmos, resultados e teste estatístico (7–10, ${P2}); limiar, erros, importância e conclusão (11–14, ${P3}).`);
 
 // ---------------------------------------------------------------- 2 problema
 const s2 = pres.addSlide({ masterName: "CLARO" });
@@ -272,7 +276,7 @@ texto(s6, "Pipeline: ajustado só no treino de cada partição", { x: 4.1, y: 1.
   ["4", "Convênio", `${EDA.convenio.categorias_antes} → ${EDA.convenio.categorias_depois} nomes; codificado pela frequência no treino.`],
 ].forEach(([marca, t, corpo], i) => passo(s6, { x: 4.1 + i * 2.85, y: 2.2, w: 2.6, h: 3.2, marca, t, corpo, cor: AZUL }));
 faixa(s6, "Nenhuma mediana, média ou frequência é calculada com o conjunto de teste.");
-notas(s6, P2, `A taxonomia da A1 (ausentes, duplicados, inconsistentes, atípicos) segue valendo; a limpeza é feita por regras fixas, por isso pode rodar antes da partição. Os passos 2 a 4 correm em paralelo dentro do pipeline. Sem reamostragem: ${pct(EDA.pct_anormal)} de anormais é desbalanceamento moderado, e o peso das classes vira hiperparâmetro. Convênio por frequência, e não por target encoding, para não usar o alvo.`);
+notas(s6, P1, `A taxonomia da A1 (ausentes, duplicados, inconsistentes, atípicos) segue valendo; a limpeza é feita por regras fixas, por isso pode rodar antes da partição. Os passos 2 a 4 correm em paralelo dentro do pipeline. Sem reamostragem: ${pct(EDA.pct_anormal)} de anormais é desbalanceamento moderado, e o peso das classes vira hiperparâmetro. Convênio por frequência, e não por target encoding, para não usar o alvo.`);
 
 // ------------------------------------------------------------- 7 protocolo
 const s7 = pres.addSlide({ masterName: "CLARO" });
@@ -379,7 +383,7 @@ estatistica(s10, {
   rotulo: "é toda a vantagem dos ensembles sobre a logística", tamanhoRotulo: 16, hRotulo: 0.5,
 });
 faixa(s10, "Três algoritmos no mesmo patamar: o limite parece estar na informação, não no algoritmo.");
-notas(s10, P3, `Média de métricas não basta para declarar superioridade: as 10 partições compartilham treino. Para um único dataset, os slides recomendam o 5×2cv de Dietterich, que controla melhor o erro Tipo I; Holm corrige as três comparações. RF × GB: não rejeitar H0 não prova igualdade — dizemos "sem diferença significativa". Na taxa de erro (limiar 0,5), nenhum par difere (p de Holm entre ${num(Math.min(...pares.map(([a, b]) => par(a, b).erro.p_holm)))} e ${num(Math.max(...pares.map(([a, b]) => par(a, b).erro.p_holm)))}).`);
+notas(s10, P2, `Média de métricas não basta para declarar superioridade: as 10 partições compartilham treino. Para um único dataset, os slides recomendam o 5×2cv de Dietterich, que controla melhor o erro Tipo I; Holm corrige as três comparações. RF × GB: não rejeitar H0 não prova igualdade — dizemos "sem diferença significativa". Na taxa de erro (limiar 0,5), nenhum par difere (p de Holm entre ${num(Math.min(...pares.map(([a, b]) => par(a, b).erro.p_holm)))} e ${num(Math.max(...pares.map(([a, b]) => par(a, b).erro.p_holm)))}).`);
 
 // -------------------------------------------------------------- 11 limiar
 const s11 = pres.addSlide({ masterName: "CLARO" });
