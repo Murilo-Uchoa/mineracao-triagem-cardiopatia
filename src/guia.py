@@ -108,7 +108,7 @@ lista([
     f"AUC-ROC: piso {num(m('dummy', 'auc_roc'))}; logística {num(m('logistica', 'auc_roc'))}; "
     f"random forest {num(m('random_forest', 'auc_roc'))}; gradient boosting {num(m('gradient_boosting', 'auc_roc'))}.",
     f"5×2cv + Holm: ensembles > logística (p = {num(par('logistica', 'random_forest')['auc_roc']['p_holm'])} e "
-    f"{num(par('logistica', 'gradient_boosting')['auc_roc']['p_holm'])}); RF ≈ GB (p = "
+    f"{num(par('logistica', 'gradient_boosting')['auc_roc']['p_holm'])}); RF × GB sem diferença significativa (p = "
     f"{num(par('random_forest', 'gradient_boosting')['auc_roc']['p_holm'])}).",
     f"Triagem (GB): sensibilidade {num(m('gradient_boosting', 'sensibilidade', 'triagem'), 2)}, especificidade "
     f"{num(m('gradient_boosting', 'especificidade', 'triagem'), 2)} — prioriza a fila, não substitui a ausculta.",
@@ -122,9 +122,9 @@ tabela.style = "Light Grid Accent 1"
 for celula, texto in zip(tabela.rows[0].cells, ["Slides", "Quem", "Assunto (≈ 5 min por pessoa)"]):
     celula.text = texto
 for faixa, quem, assunto in [
-    ("1–4", nomes[0], "Problema, dados e as três formas de vazamento"),
-    ("5–7", nomes[1], "Pré-processamento, validação aninhada agrupada, algoritmos e métricas"),
-    ("8–13", nomes[2], "Resultados, teste estatístico, limiar, erros, importância e conclusão"),
+    ("1–5", nomes[0], "Problema, dados e as três formas de vazamento (sopro, auditoria dos atributos, retornos e imputação)"),
+    ("6–9", nomes[1], "Pré-processamento, validação aninhada agrupada, algoritmos, métricas e AUC dos modelos"),
+    ("10–14", nomes[2], "Teste estatístico, limiar e matrizes de confusão, erros, importância e conclusão"),
 ]:
     linha = tabela.add_row().cells
     linha[0].text, linha[1].text, linha[2].text = faixa, quem, assunto
